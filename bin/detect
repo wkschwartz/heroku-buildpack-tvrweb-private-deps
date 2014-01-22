@@ -8,10 +8,6 @@
 # Fail fast and fail hard.
 set -eo pipefail
 
-indent() {
-  sed -u 's/^/       /'
-}
-
 BUILD_DIR=$1
 
 # Exit early if app is clearly not Python.
@@ -20,14 +16,14 @@ if [ ! -f $BUILD_DIR/requirements.txt ] && [ ! -f $BUILD_DIR/setup.py ]; then
 fi
 # Python and Pip must already be installed. http://stackoverflow.com/q/592620/1286628
 command -v pip >/dev/null 2>&1 || {
-	echo "Cannot find Pip" | indent;
+	echo "       Cannot find Pip";
 	exit 1;
 }
 
 # If the GITHUB_OAUTH_TOKEN environment variable is not set, then the git clone
 # step in bin/compile won't work.
 if [ -z "$GITHUB_OAUTH_TOKEN" ]; then
-	echo "! Missing GITHUB_OAUTH_TOKEN, not installing TVRepack" | indent
+	echo "       ! Missing GITHUB_OAUTH_TOKEN, not installing TVRepack"
 	exit 1
 fi
 
