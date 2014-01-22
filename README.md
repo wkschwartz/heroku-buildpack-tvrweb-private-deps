@@ -8,7 +8,7 @@ password in your app's repo.
 Usage
 -----
 
-Your app should have (Buildpack
+Your app should have [Buildpack
 Multi](https://github.com/ddollar/heroku-buildpack-multi). Your `.buildpacks`
 file should look like this:
 
