@@ -20,7 +20,7 @@ git clone https://${GITHUB_OAUTH_TOKEN}:x-oauth-basic@github.com/EconomistsInc/t
 
 # We remove the repo's .git because the OAuth token will have been written in
 # .git/config during the clone step.
-echo "-----> Removing TVRepack repo metdata"
+echo "-----> Removing TVRepack repo metadata"
 rm -rf $BUILD_DIR/vendor/tvrepack/.git
 
 echo "-----> Adding TVRepack to the PYTHONPATH"
