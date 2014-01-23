@@ -14,28 +14,17 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
-mkdir -p $HOME/vendor
-cd $HOME/vendor
-
-if [ ! -d tvrepack ]; then
-	echo "-----> Downloading TVRepack"
-	git clone https://${GITHUB_OAUTH_TOKEN}:x-oauth-basic@github.com/EconomistsInc/tvrepack >/dev/null 2>&1
-else
-	echo "-----> TVRepack already downloaded, not sure why"
-	exit 1
-fi
+echo "-----> Downloading TVRepack"
+mkdir -p $BUILD_DIR/vendor
+git clone $BUILD_DIR/vendor/tvrepack https://${GITHUB_OAUTH_TOKEN}:x-oauth-basic@github.com/EconomistsInc/tvrepack >/dev/null 2>&1
 
 # We remove the repo's .git because the OAuth token will have been written in
 # .git/config during the clone step.
 echo "-----> Removing TVRepack repo metdata"
-cd tvrepack
-rm -rf .git
+rm -rf $BUILD_DIR/vendor/tvrepack/.git
 
 echo "-----> Adding TVRepack to the PYTHONPATH"
-cd $HOME
-mkdir -p .profile.d
-cd .profile.d
-echo 'export PYTHONPATH=$PYTHONPATH:$HOME/vendor/tvrepack' > tvrepack.sh
-
+mkdir -p $BUILD_DIR/.profile.d
+echo 'export PYTHONPATH=$PYTHONPATH:$HOME/vendor/tvrepack' > $BUILD_DIR/.profile.d/tvrepack.sh
 
 echo "-----> Done"
