@@ -10,20 +10,6 @@ set -eo pipefail
 
 BUILD_DIR=$1
 
-# Exit early if app is clearly not Python.
-if [ ! -f $BUILD_DIR/requirements.txt ] && [ ! -f $BUILD_DIR/setup.py ]; then
-  exit 1
-fi
-# Python and Pip must already be installed.
-if [ ! -x /app/.heroku/python/bin/python ]; then
-	echo "       Cannot find Python"
-	exit 1
-fi
-if [ ! -x /app/.heroku/python/bin/pip ]; then
-	echo "       Cannot find Pip"
-	exit 1
-fi
-
 # If the GITHUB_OAUTH_TOKEN environment variable is not set, then the git clone
 # step in bin/compile won't work.
 if [ -z "$GITHUB_OAUTH_TOKEN" ]; then
