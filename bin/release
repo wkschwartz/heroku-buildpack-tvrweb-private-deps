@@ -1,11 +1,13 @@
 #! /bin/bash
 
+set -eo pipefail
+
 # Play nice with https://github.com/ddollar/heroku-buildpack-multi
 if [ -e $1/last_pack_release.out ]; then
   # Copy last_pack_release.out to a temporary file before outputing it because
   # if you just try to cat $1/last_pack_release.out then you'll get this error:
   #   cat: /tmp/build_XXXX/last_pack_release.out: input file is output file
-  tmp=$(mktmp -t last_release || exit 1)
+  tmp=$(mktemp -t last_release)
   cat $1/last_pack_release.out > $tmp
   cat $tmp
   rm $tmp
