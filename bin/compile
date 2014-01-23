@@ -28,7 +28,7 @@ fi
 cd tvrepack
 
 echo "-----> Pip installing TVRepack dependencies"
-pip install -r requirements.txt >/dev/null 2>&1
+/app/.heroku/python/bin/pip install -r requirements.txt >/dev/null 2>&1
 
 echo "-----> Installing TVRepack"
 python setup.py install >/dev/null 2>&1

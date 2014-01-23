@@ -14,11 +14,11 @@ BUILD_DIR=$1
 if [ ! -f $BUILD_DIR/requirements.txt ] && [ ! -f $BUILD_DIR/setup.py ]; then
   exit 1
 fi
-# Python and Pip must already be installed. http://stackoverflow.com/q/592620/1286628
-command -v pip >/dev/null 2>&1 || {
-	echo "       Cannot find Pip";
-	exit 1;
-}
+# Python and Pip must already be installed.
+if [ ! -x /app/.heroku/python/bin/pip ]; then 
+	echo "       Cannot find Pip"
+	exit 1
+fi
 
 # If the GITHUB_OAUTH_TOKEN environment variable is not set, then the git clone
 # step in bin/compile won't work.
