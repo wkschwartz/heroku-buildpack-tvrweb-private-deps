@@ -15,7 +15,11 @@ if [ ! -f $BUILD_DIR/requirements.txt ] && [ ! -f $BUILD_DIR/setup.py ]; then
   exit 1
 fi
 # Python and Pip must already be installed.
-if [ ! -x /app/.heroku/python/bin/pip ]; then 
+if [ ! -x /app/.heroku/python/bin/python ]; then
+	echo "       Cannot find Python"
+	exit 1
+fi
+if [ ! -x /app/.heroku/python/bin/pip ]; then
 	echo "       Cannot find Pip"
 	exit 1
 fi
