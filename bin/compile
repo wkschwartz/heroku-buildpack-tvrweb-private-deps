@@ -24,6 +24,7 @@ echo "-----> Removing TVRepack repo metadata"
 rm -rf $BUILD_DIR/vendor/tvrepack/.git
 
 echo "-----> Installing TVRepack"
+cd $BUILD_DIR/vendor/tvrepack
 python $BUILD_DIR/vendor/tvrepack/setup.py install
 
 echo "-----> Adding TVRepack to the PYTHONPATH"
