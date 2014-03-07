@@ -23,6 +23,9 @@ git clone https://${GITHUB_OAUTH_TOKEN}:x-oauth-basic@github.com/EconomistsInc/t
 echo "-----> Removing TVRepack repo metadata"
 rm -rf $BUILD_DIR/vendor/tvrepack/.git
 
+echo "-----> Installing TVRepack"
+python $BUILD_DIR/vendor/tvrepack/setup.py install
+
 echo "-----> Adding TVRepack to the PYTHONPATH"
 mkdir -p $BUILD_DIR/.profile.d
 echo 'export PYTHONPATH=$PYTHONPATH:$HOME/vendor/tvrepack' > $BUILD_DIR/.profile.d/tvrepack.sh
