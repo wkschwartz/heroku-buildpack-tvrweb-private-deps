@@ -16,6 +16,7 @@ ENV_DIR=$3
 
 echo "-----> Downloading TVRepack"
 mkdir -p $BUILD_DIR/vendor
+GITHUB_OAUTH_TOKEN=$(cat $ENV/GITHUB_OAUTH_TOKEN)
 git clone https://${GITHUB_OAUTH_TOKEN}:x-oauth-basic@github.com/EconomistsInc/tvrepack $BUILD_DIR/vendor/tvrepack >/dev/null 2>&1
 
 # We remove the repo's .git because the OAuth token will have been written in

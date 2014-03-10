@@ -1,20 +1,6 @@
 #! /bin/bash
 
-# ## Usage
-# Compiling an app into a slug is simple:
-#
-#     $ bin/detect <build-dir> <cache-dir>
-
-# Fail fast and fail hard.
-set -eo pipefail
-
-BUILD_DIR=$1
-
-# If the GITHUB_OAUTH_TOKEN environment variable is not set, then the git clone
-# step in bin/compile won't work.
-if [ -z "$GITHUB_OAUTH_TOKEN" ]; then
-	echo "       ! Missing GITHUB_OAUTH_TOKEN, not installing TVRepack"
-	exit 1
-fi
-
+# Since Heroku does not pass to the detect script the ENV_DIR, we cannot detect
+# whether the relevant environment variable is present.
 echo TVRepack
+exit 0
