@@ -21,7 +21,7 @@ if [ -z "$GITHUB_OAUTH_TOKEN" ]; then
 		GITHUB_OAUTH_TOKEN=$(cat "$ENV/GITHUB_OAUTH_TOKEN")
 	fi
 fi
-git clone https://${GITHUB_OAUTH_TOKEN}:x-oauth-basic@github.com/EconomistsInc/tvrepack $BUILD_DIR/vendor/tvrepack >/dev/null 2>&1
+git clone https://${GITHUB_OAUTH_TOKEN}:x-oauth-basic@github.com/EconomistsInc/tvrepack $BUILD_DIR/vendor/tvrepack
 
 # We remove the repo's .git because the OAuth token will have been written in
 # .git/config during the clone step.
