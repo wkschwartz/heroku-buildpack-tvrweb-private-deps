@@ -24,9 +24,15 @@ git clone https://${GITHUB_OAUTH_TOKEN}:x-oauth-basic@github.com/EconomistsInc/t
 echo "-----> Removing TVRepack repo metadata"
 rm -rf $BUILD_DIR/vendor/tvrepack/.git
 
-echo "-----> Installing TVRepack"
+echo "-----> Building acceleration module"
 cd $BUILD_DIR/vendor/tvrepack
-python $BUILD_DIR/vendor/tvrepack/setup.py install
+# These are the options that python setup.py install uses on Ubuntu, I
+# think. Make sure to updte the include path if the Python version changes.
+CFLAGS="-pthread -O3 -fno-strict-aliasing -fwrapv -fPIC"
+WFLAGS="-Wall -Wstrict-prototypes"
+gcc -DNDEBUG $CFLAGS $WFLAGS -I/usr/local/include/python2.7 -c Modules/_tvrepackmodule.c -o _tvrepackmodule.o
+gcc -shared $CFLAGS _tvrepackmodule.o -o _tvrepack.so
+rm _tvrepackmodule.o
 
 echo "-----> Adding TVRepack to the PYTHONPATH"
 mkdir -p $BUILD_DIR/.profile.d
