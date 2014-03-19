@@ -21,7 +21,7 @@ if [ -z "$GITHUB_OAUTH_TOKEN" ]; then
 		echo "Reading OAuth token from ENV dir $ENV"
 		GITHUB_OAUTH_TOKEN=$(cat "$ENV/GITHUB_OAUTH_TOKEN")
 	else
-		echo "Cannot find OAuth token"
+		echo "Cannot find OAuth token in ENV dir $ENV:"
 		ls -la "$ENV"
 		exit 1
 	fi
