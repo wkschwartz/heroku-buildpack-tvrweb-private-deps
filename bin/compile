@@ -18,7 +18,11 @@ echo "-----> Downloading TVRepack"
 mkdir -p $BUILD_DIR/vendor
 if [ -z "$GITHUB_OAUTH_TOKEN" ]; then
 	if [ -r "$ENV/GITHUB_OAUTH_TOKEN" ]; then
+		echo "Reading OAuth token from ENV dir $ENV"
 		GITHUB_OAUTH_TOKEN=$(cat "$ENV/GITHUB_OAUTH_TOKEN")
+	else
+		echo "Cannot find OAuth token"
+		exit 1
 	fi
 fi
 git clone https://${GITHUB_OAUTH_TOKEN}:x-oauth-basic@github.com/EconomistsInc/tvrepack $BUILD_DIR/vendor/tvrepack
